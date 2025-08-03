@@ -1,13 +1,12 @@
 import typer as typer
 from typing_extensions import Annotated
 
-import config
-import openaiapp
-from config import getconfig, updateconfig
+import src.openaiapp as openaiapp
+from src.config import getconfig, updateconfig, getallconfig
 import os
 import yaml
 import json
-from functions import readfile
+from src.functions import readfile
 
 # bootstrap typer
 app = typer.Typer(no_args_is_help=True)
@@ -94,9 +93,9 @@ def startapp(inbrowser, port, share):
                                      inputs=gr.Matrix(
                                          headers=["Key", "Value"],
                                          datatype=["str", "str"],
-                                         row_count=len(config.getallconfig()),
+                                         row_count=len(getallconfig()),
                                          label="Config Options",
-                                         value=[(k, v) for k, v in config.getallconfig().items()]
+                                         value=[(k, v) for k, v in getallconfig().items()]
                                      ))
                     with gr.Tab("Test"):
                         gr.Interface(

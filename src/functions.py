@@ -5,7 +5,7 @@ import json5
 import yaml
 from jinja2 import Environment
 
-from config import getconfig
+from src.config import getconfig
 
 debug = getconfig("AI_DEBUG")
 

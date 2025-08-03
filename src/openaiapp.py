@@ -4,9 +4,8 @@ import typer  # see https://typer.tiangolo.com/tutorial/subcommands/
 from retry import retry
 from typing_extensions import Annotated
 
-import config
-from config import getconfig
-from functions import call_ai_with_template, init_client, call_ai_simple, readfile
+from src.config import getconfig
+from src.functions import call_ai_with_template, init_client, call_ai_simple, readfile
 
 # bootstrap typer
 app = typer.Typer(no_args_is_help=True)
@@ -34,7 +33,7 @@ def call(
         try:
             metadata.update(json5.loads(request))
         except Exception as e:
-            if config.getconfig("AI_DEBUG"):
+            if getconfig("AI_DEBUG"):
                 print(e)
 
         with_template = call_ai_with_template(init_client(), template, metadata, stop_at_section_block_parsed)
