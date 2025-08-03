@@ -1,0 +1,9 @@
+name: Sample App
+description: An example application for demonstration purposes that summarizes content in gen-z slang.
+inputs: 
+ - name: content
+   type: text
+   label: Content you wish to summarize in Gen-Z Slang.
+stop_characters: 
+ - "``"
+ - "```"
